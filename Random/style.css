@@ -1,0 +1,15 @@
+.getNumber .info{
+  display: inline;
+}
+
+.getNumber .range{
+  display: inline;
+}
+
+.guess-form .info{
+  display: inline;
+}
+
+.guess-form .guess{
+  display: inline;
+}
