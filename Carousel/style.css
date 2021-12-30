@@ -1,0 +1,30 @@
+body{
+  position: relative;
+}
+
+.slide-container {
+  width: 300vw;
+  display: flex;
+  transition: all 1s;
+}
+.slide-box img {
+  width: 100vw;
+  height: 500px;
+}
+
+.fas{
+  position: absolute;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.fa-chevron-left{
+  top: 180px;
+  left: 20%;
+}
+
+.fa-chevron-right{
+  top: 180px;
+  left: 80%;
+}
