@@ -25,11 +25,11 @@ btn3.addEventListener("click", () => {
 btnLeft.addEventListener("click", () => {
   if (count === 0){
     count = 2
-    slide(count)
+    slide()
   }
   else{
     count += -1
-    slide(count)
+    slide()
   }
 })
 
