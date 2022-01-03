@@ -23,10 +23,16 @@ function checkTab(value){
   text[value].classList.add("show")
 }
 
+// event bubbling
+// list.addEventListener("click", (event) => {
+//   for(let i=0; i<tab.length;i++){
+//     if (event.target === tab[i]){
+//       checkTab(i)
+//     }
+//   }
+// })
+
+// dataset 활용
 list.addEventListener("click", (event) => {
-  for(let i=0; i<tab.length;i++){
-    if (event.target === tab[i]){
-      checkTab(i)
-    }
-  }
+  checkTab(event.target.dataset.value)
 })
