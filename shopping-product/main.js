@@ -1,4 +1,5 @@
 const sortPrice = document.querySelector("#sort-price")
+const filterPrice = document.querySelector("#filter-price")
 const cardGroup = document.querySelector(".card-group")
 
 let products = [
@@ -7,6 +8,7 @@ let products = [
   { id : 2, price : 60000, title : 'Black Monastery' }
 ]
 let count = products.length
+let compareList = products
 
 function printCard(count){
   for (i=0;i<count;i++){
@@ -33,12 +35,18 @@ function printCard(count){
   } 
 }
 
+function cardReset() {
+  for(let i=0;i<count;i++){
+    cardGroup.removeChild(cardGroup.firstElementChild)
+  }
+}
+
 function productInfo(array) {
   const productTitle = document.querySelectorAll(".product-title")
   const productPrice = document.querySelectorAll(".product-price")
   for (let i=0;i<array.length;i++){
-    productTitle[i].innerText = products[i].title
-    productPrice[i].innerText = products[i].price
+    productTitle[i].innerText = array[i].title
+    productPrice[i].innerText = array[i].price
   }
 }
 
@@ -46,8 +54,19 @@ printCard(count)
 productInfo(products)
 
 sortPrice.addEventListener("click", () => {
-  products.sort(function(a,b){
+  compareList.sort(function(a,b){
     return a.price - b.price
   })
-  productInfo(products)
+  productInfo(compareList)
+})
+
+filterPrice.addEventListener("click", () => {
+  filterProducts = products.filter(function(a){
+    return a.price > 50000
+  })
+  cardReset(count)
+  count = filterProducts.length
+  printCard(count)
+  productInfo(filterProducts)
+  compareList = filterProducts
 })
