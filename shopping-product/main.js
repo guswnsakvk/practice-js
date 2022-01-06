@@ -1,5 +1,6 @@
 const sortPrice = document.querySelector("#sort-price")
 const filterPrice = document.querySelector("#filter-price")
+const sortTitle = document.querySelector("#sort-title")
 const cardGroup = document.querySelector(".card-group")
 
 let products = [
@@ -69,4 +70,22 @@ filterPrice.addEventListener("click", () => {
   printCard(count)
   productInfo(filterProducts)
   compareList = filterProducts
+})
+
+sortTitle.addEventListener("click", () => {
+  console.log(compareList)
+  compareList.sort(function(a,b){
+    const nameA = a.title.toUpperCase()
+    const nameB = b.title.toUpperCase()
+    if (nameA > nameB){
+      return 1
+    }
+    else if (nameA < nameB){
+      return -1
+    }
+    else{
+      return 0
+    }
+  })
+  console.log(compareList)
 })
