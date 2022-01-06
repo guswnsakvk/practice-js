@@ -1,6 +1,7 @@
 const sortPrice = document.querySelector("#sort-price")
 const filterPrice = document.querySelector("#filter-price")
 const sortTitle = document.querySelector("#sort-title")
+const resetBtton = document.querySelector("#reset-btton")
 const cardGroup = document.querySelector(".card-group")
 
 let products = [
@@ -9,7 +10,7 @@ let products = [
   { id : 2, price : 60000, title : 'Black Monastery' }
 ]
 let count = products.length
-let compareList = products
+let compareList = [...products]
 
 function printCard(count){
   for (i=0;i<count;i++){
@@ -68,12 +69,11 @@ filterPrice.addEventListener("click", () => {
   cardReset(count)
   count = filterProducts.length
   printCard(count)
-  productInfo(filterProducts)
-  compareList = filterProducts
+  compareList = [...filterProducts]
+  productInfo(compareList)
 })
 
 sortTitle.addEventListener("click", () => {
-  console.log(compareList)
   compareList.sort(function(a,b){
     const nameA = a.title.toUpperCase()
     const nameB = b.title.toUpperCase()
@@ -87,5 +87,13 @@ sortTitle.addEventListener("click", () => {
       return 0
     }
   })
-  console.log(compareList)
+  productInfo(compareList)
+})
+
+resetBtton.addEventListener("click", () => {
+  cardReset(count)
+  compareList = [...products]
+  count = products.length
+  printCard(count)
+  productInfo(compareList)
 })
