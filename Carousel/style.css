@@ -4,9 +4,13 @@ body{
 
 .slide-container {
   width: 300vw;
-  display: flex;
-  transition: all 1s;
+  display: flex; 
 }
+
+.transforming{
+  transition: all .5s;
+}
+
 .slide-box img {
   width: 100vw;
   height: 500px;
