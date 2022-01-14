@@ -1,0 +1,34 @@
+.container{
+  display: flex;
+  margin: 50px 50px;
+  box-sizing: border-box;
+}
+
+.test-list{
+  width: 60%;
+  height: 300px;
+  background-color: red;
+}
+
+.test1{
+  width: 100px;
+  height: 100px;
+  background-color: saddlebrown;
+}
+
+.test2{
+  width: 100px;
+  height: 100px;
+  background-color: salmon;
+}
+
+.place{
+  width: 40%;
+  height: 300px;
+  background-color: royalblue;
+}
+
+img{
+  width: 100%;
+  height: 84px;
+}
