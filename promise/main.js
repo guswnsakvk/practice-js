@@ -2,9 +2,9 @@
 const img = document.querySelector("#test")
 
 let testPromise1 = new Promise(function(resolve, reject){
-  img.addEventListener('load', function(){
-    resolve('성공!')
-  })
+  img.onload = function(){
+    resolve("성공!")
+  }
   img.addEventListener('error', function(){
     reject('실패!')
   })
