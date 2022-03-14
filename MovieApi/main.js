@@ -20,8 +20,9 @@ function fetchMovies(movieName){
         movieBox.removeChild(movieBox.firstChild)
       }
       const moviePosters = []
+
       for(let i=0; i<response.data.Search.length;i++){
-        moviePosters.push(response.data.Search[i].Poster)
+        moviePosters.push(response.data.Search[i])
       }
       console.log(moviePosters)
       console.log(response.data)
@@ -30,7 +31,7 @@ function fetchMovies(movieName){
         const moviePost = document.createElement("div")
         moviePost.classList.add("movePost")
         const moviePoster = document.createElement("img")
-        moviePoster.src = item
+        moviePoster.src = item.Poster
         console.log(item)
         moviePost.append(moviePoster)
         movieBox.append(moviePost)
