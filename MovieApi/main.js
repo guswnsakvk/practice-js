@@ -56,3 +56,27 @@ function viewInfo(movie){
       moviePlot.innerText = response.data.Plot
     })
 }
+
+const today = new Date()
+const year = today.getFullYear()
+const month = String(today.getMonth() + 1).padStart(2, '0')
+const day = String(today.getDate() -1).padStart(2,'0')
+const weekDay = String(today.getDate() -7).padStart(2, '0')
+const todayTop10 = []
+const weekTop10 = []
+console.log(year, month, day)
+
+axios
+  .get(`https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=1789e1cbb3fccb20d4941ba376ade392&targetDt=${year}${month}${day}`)
+  .then((response) => {
+    for(let i=0;i<response.data.boxOfficeResult.dailyBoxOfficeList.length;i++){
+      todayTop10.push(response.data.boxOfficeResult.dailyBoxOfficeList[i].movieNm)
+    }
+    console.log(todayTop10)
+  })
+
+axios
+  .get(`	http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json?key=1789e1cbb3fccb20d4941ba376ade392&targetDt=${year}${month}${weekDay}`)
+  .then((response) => {
+    console.log(response)
+  })
