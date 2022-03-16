@@ -80,3 +80,32 @@ axios
   .then((response) => {
     console.log(response)
   })
+
+const top10 = document.querySelector(".top10")
+const btn = document.querySelector(".btn")
+
+btn.addEventListener("click", function(){
+  for(let top10 of todayTop10){
+    axios
+      .get(`http://www.omdbapi.com/?apikey=${OMDBKEY}&t=${top10}`)
+      .then((response) => {
+        console.log(response)
+        console.log(top10)
+      })
+  }
+})
+
+const ID_KEY = '7YAadA8ozr7BP0mY5COl'
+const SECRET_KEY = 'hCQuTfFE3Z'
+
+axios.get('https://openapi.naver.com/v1/search/movie.json', {
+  params: {
+    query: '어벤져스'
+  },
+  headers: {
+    'X-Naver-Client-Id': ID_KEY,
+    'X-Naver-Client-Secret': SECRET_KEY
+  }
+}).then((response) => {
+  console.log(response)
+})
