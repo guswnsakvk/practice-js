@@ -83,29 +83,24 @@ axios
 
 const top10 = document.querySelector(".top10")
 const btn = document.querySelector(".btn")
-
-btn.addEventListener("click", function(){
-  for(let top10 of todayTop10){
-    axios
-      .get(`http://www.omdbapi.com/?apikey=${OMDBKEY}&t=${top10}`)
-      .then((response) => {
-        console.log(response)
-        console.log(top10)
-      })
-  }
-})
-
 const ID_KEY = '7YAadA8ozr7BP0mY5COl'
 const SECRET_KEY = 'hCQuTfFE3Z'
 
-axios.get('https://openapi.naver.com/v1/search/movie.json', {
-  params: {
-    query: '어벤져스'
-  },
-  headers: {
-    'X-Naver-Client-Id': ID_KEY,
-    'X-Naver-Client-Secret': SECRET_KEY
+btn.addEventListener("click", function(){
+  for(let topMovie of todayTop10){
+    console.log(topMovie)
+    axios.get('https://cors-anywhere.herokuapp.com/https://openapi.naver.com/v1/search/movie.json', {
+      params: {
+        query: topMovie,
+      },
+      headers: {
+        'X-Naver-Client-Id': ID_KEY,
+        'X-Naver-Client-Secret': SECRET_KEY,
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST, GET, OPTIONS, DELETE"
+      }
+    }).then((response) => {
+      console.log(response)
+    })
   }
-}).then((response) => {
-  console.log(response)
 })
