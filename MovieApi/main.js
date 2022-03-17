@@ -129,14 +129,14 @@ testGetMovie.addEventListener("submit", function(event){
 
 function testfetchMovie(testMovie){
   axios
-    .get(`https://yts.mx/api/v2/list_movies.json?query_term=${testMovie}`)
+    .get(`https://yts.mx/api/v2/list_movies.json?query_term=${testMovie}&page=1`)
     .then((response) => {
       console.log(response)
       const testMovieList = []
       while( testMovieBox.hasChildNodes()){
         testMovieBox.removeChild(testMovieBox.firstChild)
       }
-      for(let i=0;i<response.data.data.movie_count;i++){
+      for(let i=0;i<response.data.data.movies.length;i++){
         testMovieList.push(response.data.data.movies[i])
       }
       console.log(testMovieList)
