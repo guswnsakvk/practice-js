@@ -27,3 +27,33 @@
   margin-top: 10px;
   margin-right: 20px;
 }
+
+#movieBox{
+  display: flex;
+  margin-top: 30px;
+  width: 1000px;
+  height: 950px;
+  border: 4px solid red;
+  overflow: visible;
+  flex-wrap: wrap;
+}
+
+#movePost{
+  width: 150px;
+  height: 250px;
+  margin: 10px;
+}
+
+#movePost img{
+  width: 100%;
+  height: 100%;
+}
+
+#movieInfo{
+  display: flex;
+}
+
+#selectedMoviePoster{
+  margin-top: 10px;
+  margin-right: 20px;
+}

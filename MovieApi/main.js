@@ -15,6 +15,7 @@ getMovie.addEventListener("submit", function(event){
   getMovieName.value = ''
 })
 
+// omdb api
 function fetchMovies(movieName){
   axios
     .get(`https://www.omdbapi.com/?apikey=${OMDBKEY}&s=${movieName}`)
@@ -66,6 +67,7 @@ const todayTop10 = []
 const weekTop10 = []
 console.log(year, month, day)
 
+// kobisopen api
 axios
   .get(`https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=1789e1cbb3fccb20d4941ba376ade392&targetDt=${year}${month}${day}`)
   .then((response) => {
@@ -76,7 +78,7 @@ axios
   })
 
 axios
-  .get(`	http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json?key=1789e1cbb3fccb20d4941ba376ade392&targetDt=${year}${month}${weekDay}`)
+  .get(`http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json?key=1789e1cbb3fccb20d4941ba376ade392&targetDt=${year}${month}${weekDay}`)
   .then((response) => {
     console.log(response)
   })
@@ -86,6 +88,7 @@ const btn = document.querySelector(".btn")
 const ID_KEY = '7YAadA8ozr7BP0mY5COl'
 const SECRET_KEY = 'hCQuTfFE3Z'
 
+// naver movie api
 btn.addEventListener("click", function(){
   for(let topMovie of todayTop10){
     console.log(topMovie)
@@ -100,7 +103,61 @@ btn.addEventListener("click", function(){
         "Access-Control-Allow-Methods": "POST, GET, OPTIONS, DELETE"
       }
     }).then((response) => {
-      console.log(response)
+      console.log(response.data.items[0])
     })
   }
 })
+
+// yts api
+
+const testGetMovie = document.querySelector("#getMovie")
+const testGetMovieName = document.querySelector("#getMovieName")
+const testMovieBox = document.querySelector("#movieBox")
+const testSelectedMoviePoster = document.querySelector("#selectedMoviePoster")
+const testMovieTitle = document.querySelector("#movieTitle")
+const testMoviePlot = document.querySelector("#moviePlot")
+
+let testMovie = ''
+let actionMovie = []
+
+testGetMovie.addEventListener("submit", function(event){
+  event.preventDefault()
+  testMovie = testGetMovieName.value
+  console.log(testMovie)
+  testfetchMovie(testMovie)
+})
+
+function testfetchMovie(testMovie){
+  axios
+    .get(`https://yts.mx/api/v2/list_movies.json?query_term=${testMovie}`)
+    .then((response) => {
+      console.log(response)
+      const testMovieList = []
+      while( testMovieBox.hasChildNodes()){
+        testMovieBox.removeChild(testMovieBox.firstChild)
+      }
+      for(let i=0;i<response.data.data.movie_count;i++){
+        testMovieList.push(response.data.data.movies[i])
+      }
+      console.log(testMovieList)
+
+      testMovieList.forEach(function(movie){
+        const testShowMovie = document.createElement("div")
+        testShowMovie.classList.add("movePost")
+        const testMoviePoster = document.createElement("img")
+        testMoviePoster.src = movie.medium_cover_image
+        testMoviePoster.addEventListener("click", function(){
+          testviewInfo(movie)
+        })
+        console.log(movie)
+        testShowMovie.append(testMoviePoster)
+        testMovieBox.append(testShowMovie)
+      })
+    })
+}
+
+function testviewInfo(movie){
+  testSelectedMoviePoster.src = movie.medium_cover_image
+  testMovieTitle.innerText = movie.title
+  testMoviePlot.innerText = movie.synopsis
+}
