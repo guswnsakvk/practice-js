@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css">
+  <title>Document</title>
+</head>
+<body>
+  <div class="title">iframe을 이용한 audio 재생 - autoplay</div>
+  <audio class='audio' src='./music/Leo.mp3' autoplay loop controls>island.mp3</audio>
+  <!--<audio autoplay controls>
+    <source src="./music/Betelgeuse.mp3" type="audio/mp3">
+  </audio>-->
+  <div class="select-music-area">
+    <select class="select" size="3">
+      <option value="music/Leo.mp3">Leo</option>
+      <option value="music/Betelgeuse.mp3">Betelgeuse</option>
+      <option value="music/Dry_flower.mp3">Dry flower</option>
+    </select>
+    <button class="pre-btn">pre</button>
+    <button class="next-btn">next</button>
+  </div>
+  <button class="btn">곡바꾸기</button>
+  <button class="play-btn">play</button>
+  <button class="pause-btn">pause</button>
+  <script src="./main.js"></script>
+</body>
+</html>
